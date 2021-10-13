@@ -1,1 +1,9 @@
 <h1>admin</h1>
+<h3>Users : </h3>
+{{#each users}}
+  <ul>
+    <li>{{this.firstName}}</li>
+    <li>{{this.surname}}</li>
+    <li>{{this.dateOfBirth}}</li>
+  </ul>
+{{/each}}

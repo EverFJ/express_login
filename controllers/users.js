@@ -13,7 +13,12 @@ const getSignupPage = (req, res) => {
     res.render("signup")
 }
 const getAdminPage = (req, res) => {
-    res.render("admin")
+    User.find()
+        .then(users => {
+            res.render("admin", {
+                users: users.toObject()
+            })
+        })
 }
 const handleSignup = (req, res) => {
     const errors = validationResult(req)
@@ -35,7 +40,6 @@ const handleSignup = (req, res) => {
             res.render("home", {
                 user: response.toObject()
             })
-
         })
         .catch(err => {
             console.error(err)
@@ -54,8 +58,16 @@ const handleLogin = (req, res) => {
                 req.session.user = user
                 const expiresAt = Date.now() + (1000 * 60 * 60 * 24)
                 // Coookie creation
-                res.setH
+                res.setHeader('Set-Cookie', 'loggedIn=true; path=/; Expires=' + new Date(expiresAt).toUTCString())
+                return res.redirect("/users/admin")
             }
+            return res.status(500).json(new Error("Wrong password").message)
+        })
+        .catch(err => {
+            console.error(err)
+            res.status(404).json({
+                error: err
+            })
         })
 }
 

@@ -7,6 +7,7 @@ const usersController = require("../controllers/users")
 const authGard = require("../middlewares/auth-gard")
 const session = require("../middlewares/session")
 
+router.get("/", usersController.getHomePage)
 router.get("/signup", usersController.getSignupPage)
 router.post("/signup",
     body("email").isEmail(),

@@ -8,3 +8,5 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+module.exports = app

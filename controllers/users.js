@@ -16,9 +16,14 @@ const getAdminPage = (req, res) => {
     User.find()
         .then(users => {
             res.render("admin", {
-                users: users.toObject()
+                users: users
             })
         })
+        .catch(err => {
+            console.error(err)
+            res.status(500).json(err)
+        })
+    // res.render("admin")
 }
 const handleSignup = (req, res) => {
     const errors = validationResult(req)
@@ -59,7 +64,7 @@ const handleLogin = (req, res) => {
                 const expiresAt = Date.now() + (1000 * 60 * 60 * 24)
                 // Coookie creation
                 res.setHeader('Set-Cookie', 'loggedIn=true; path=/; Expires=' + new Date(expiresAt).toUTCString())
-                return res.redirect("/users/admin")
+                return res.redirect("/users/")
             }
             return res.status(500).json(new Error("Wrong password").message)
         })

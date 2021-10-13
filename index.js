@@ -3,6 +3,7 @@ const app = express()
 const exphbs = require("express-handlebars")
 const mongoose = require("mongoose")
 const path = require("path")
+const session = require("./middlewares/session")
 const usersRoutes = require("./routes/users")
 const port = 8000
 const db = "mongodb://localhost:27017/express_login"
@@ -19,6 +20,8 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: false
 }))
+//Session Middleware
+app.use(session)
 app.use("/users", usersRoutes)
 
 mongoose.connect(db, (err) => {

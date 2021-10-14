@@ -18,11 +18,11 @@ const upload = multer({
 router.get("/", usersController.getHomePage)
 router.get("/signup", usersController.getSignupPage)
 router.post("/signup",
-    body("email").isEmail(),
-    [validateConfirmPassword],
+    // body("email").isEmail(),
+    // [validateConfirmPassword],
     upload.single("profilePicture"), (req, res, next) => {
         console.log(`req.body`, req.body)
-        console.log(`req`, req)
+        console.log(`req.file.filename`, req.file.filename)
         next()
     },
     usersController.handleSignup)

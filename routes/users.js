@@ -4,7 +4,7 @@ const {
     body
 } = require("express-validator")
 const usersController = require("../controllers/users")
-const authGard = require("../middlewares/auth-gard")
+const authGard = require("../middlewares/authGard")
 const session = require("../middlewares/session")
 
 router.get("/", usersController.getHomePage)

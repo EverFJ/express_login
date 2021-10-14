@@ -61,7 +61,7 @@ const handleLogin = (req, res) => {
             if (user.password === req.body.password) {
                 req.session.loggedIn = true
                 req.session.user = user
-                const expiresAt = Date.now() + (1000 * 60 * 60 * 24)
+                const expiresAt = Date.now() + (1000 * 60 * 60 * 24 * 3)
                 // Coookie creation
                 res.setHeader('Set-Cookie', 'loggedIn=true; path=/; Expires=' + new Date(expiresAt).toUTCString())
                 return res.redirect("/users/")

@@ -2,9 +2,9 @@ const {
     check
 } = require('express-validator')
 
+module.exports = {
 
-const validateConfirmPassword = () => {
-    check('confirmPassword')
+    validateConfirmPassword: check('confirmPassword')
 
         // To delete leading and triling space
         .trim()
@@ -12,12 +12,12 @@ const validateConfirmPassword = () => {
         // Validate minimum length of password
         // Optional for this context
         .isLength({
-            min: 4,
+            min: 8,
             max: 16
         })
 
         // Custom message
-        .withMessage('Password must be between 4 to 16 characters')
+        .withMessage('Password must be between 8 to 16 characters')
 
         // Custom validation
         // Validate confirmPassword
@@ -31,9 +31,5 @@ const validateConfirmPassword = () => {
             if (password !== confirmPassword) {
                 throw new Error('Passwords must be same')
             }
-        })
-}
-module.exports = {
-
-    validateConfirmPassword
+        }),
 }

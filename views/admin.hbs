@@ -2,7 +2,7 @@
 <h3>Users : </h3>
 <ul>
   {{#each users}}
-    <li>{{this.firstName}} {{this.surname}}</li>
-    <li>{{this.dateOfBirth}}</li>
+    <a href="/users/{{this._id}}"><li>{{this.firstName}}
+        {{this.surname}}</li></a>
   {{/each}}
 </ul>

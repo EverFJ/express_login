@@ -22,6 +22,10 @@ app.use(express.urlencoded({
 }))
 //Session Middleware
 app.use(session)
+
+app.use(express.static(path.join(__dirname, "public")))
+
+// Routes
 app.use("/users", usersRoutes)
 
 mongoose.connect(db, (err) => {

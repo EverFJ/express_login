@@ -6,6 +6,22 @@ const User = require("../models/User")
 const getHomePage = (req, res) => {
     res.render("home")
 }
+const getUserPage = (req, res) => {
+    const userId = req.params.id
+    User.findOne({
+            _id: userId
+        }).lean()
+        .then((user) => {
+            console.log(`user`, user)
+            res.render("user", {
+                user: user
+            })
+        })
+        .catch(err => {
+            console.error(err)
+            res.status(500).json(err)
+        })
+}
 const getLoginPage = (req, res) => {
     res.render("login")
 }
@@ -82,5 +98,6 @@ module.exports = {
     getSignupPage,
     getAdminPage,
     handleLogin,
-    handleSignup
+    handleSignup,
+    getUserPage
 }

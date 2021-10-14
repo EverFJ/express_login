@@ -1,8 +1,8 @@
 <h1>admin</h1>
 <h3>Users : </h3>
-{{#each users}}
-  <ul>
-    <li>{{this.firstName}}</li>
-    <li>{{this.surname}}</li>
-  </ul>
-{{/each}}
+<ul>
+  {{#each users}}
+    <li>{{this.firstName}} {{this.surname}}</li>
+    <li>{{this.dateOfBirth}}</li>
+  {{/each}}
+</ul>

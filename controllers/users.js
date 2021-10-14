@@ -13,7 +13,7 @@ const getSignupPage = (req, res) => {
     res.render("signup")
 }
 const getAdminPage = (req, res) => {
-    User.find()
+    User.find().lean()
         .then(users => {
             res.render("admin", {
                 users: users

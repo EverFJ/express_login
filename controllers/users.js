@@ -12,7 +12,6 @@ const getUserPage = (req, res) => {
             _id: userId
         }).lean()
         .then((user) => {
-            console.log(`user`, user)
             res.render("user", {
                 user: user
             })
@@ -39,7 +38,6 @@ const getAdminPage = (req, res) => {
             console.error(err)
             res.status(500).json(err)
         })
-    // res.render("admin")
 }
 const handleSignup = (req, res) => {
     const errors = validationResult(req)
@@ -77,10 +75,10 @@ const handleLogin = (req, res) => {
             if (user.password === req.body.password) {
                 req.session.loggedIn = true
                 req.session.user = user
-                const expiresAt = Date.now() + (1000 * 60 * 60 * 24 * 3)
-                // Coookie creation
+                const expiresAt = Date.now() + (1000 * 60 * 60 * 24 * 30)
+                // Cookie creation
                 res.setHeader('Set-Cookie', 'loggedIn=true; path=/; Expires=' + new Date(expiresAt).toUTCString())
-                return res.redirect("/users/")
+                return res.redirect("/users/admin")
             }
             return res.status(500).json(new Error("Wrong password").message)
         })

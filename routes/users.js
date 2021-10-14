@@ -10,7 +10,6 @@ const {
 const authGard = require("../middlewares/authGard")
 const session = require("../middlewares/session")
 const multer = require("multer")
-const fs = require("fs")
 const upload = multer({
     dest: "public/uploads"
 })
@@ -20,11 +19,7 @@ router.get("/signup", usersController.getSignupPage)
 router.post("/signup",
     // body("email").isEmail(),
     // [validateConfirmPassword],
-    upload.single("profilePicture"), (req, res, next) => {
-        console.log(`req.body`, req.body)
-        console.log(`req.file.filename`, req.file.filename)
-        next()
-    },
+    upload.single("profilePicture"),
     usersController.handleSignup)
 router.get("/login", usersController.getLoginPage)
 router.post("/login", usersController.handleLogin)

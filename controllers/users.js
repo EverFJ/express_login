@@ -1,6 +1,8 @@
 const {
     validationResult
 } = require("express-validator")
+const fs = require("fs")
+const path = require("path")
 const User = require("../models/User")
 
 const getHomePage = (req, res) => {
@@ -47,13 +49,15 @@ const handleSignup = (req, res) => {
         })
         return
     }
+    fs.renameSync(req.file.path, path.join(req.file.destination, req.file.originalname))
+
     const user = new User({
         email: req.body.email,
         password: req.body.password,
         firstName: req.body.firstName,
         surname: req.body.surname,
         dateOfBirth: req.body.dateOfBirth,
-        profilePicture: req.file.filename
+        profilePicture: req.file.originalname
     })
     user.save()
         .then(response => {

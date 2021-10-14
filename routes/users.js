@@ -17,8 +17,8 @@ const upload = multer({
 router.get("/", usersController.getHomePage)
 router.get("/signup", usersController.getSignupPage)
 router.post("/signup",
-    // body("email").isEmail(),
-    // [validateConfirmPassword],
+    body("email").isEmail(),
+    [validateConfirmPassword],
     upload.single("profilePicture"),
     usersController.handleSignup)
 router.get("/login", usersController.getLoginPage)

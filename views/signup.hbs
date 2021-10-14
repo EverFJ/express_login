@@ -1,5 +1,10 @@
 <h1>signup</h1>
-<form action="/users/signup" method="post">
+<form
+  action="/users/signup"
+  method="post"
+  id="signupForm"
+  enctype="multipart/form-data"
+>
   <input type="email" name="email" placeholder="Your email" />
   <input type="password" name="password" placeholder="Your password" />
   <input
@@ -10,6 +15,6 @@
   <input type="text" name="firstName" placeholder="Your first name" />
   <input type="text" name="surname" placeholder="Your last name" />
   <input type="date" name="dateOfBirth" />
-  <input type="file" name="profilePicture" />
+  <input type="file" name="profilePicture" id="profilePicture" />
   <button type="submit">Signup</button>
 </form>

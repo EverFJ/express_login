@@ -53,6 +53,7 @@ const handleSignup = (req, res) => {
         firstName: req.body.firstName,
         surname: req.body.surname,
         dateOfBirth: req.body.dateOfBirth,
+        profilePicture: req.file.filename
     })
     user.save()
         .then(response => {
@@ -66,8 +67,6 @@ const handleSignup = (req, res) => {
         })
 }
 const handleLogin = (req, res) => {
-    // console.log("username", req.body.username)
-    // console.log("password", req.body.password)
     User.findOne({
             username: req.body.username
         })

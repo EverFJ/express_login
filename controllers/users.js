@@ -78,6 +78,7 @@ const handleSignup = (req, res) => {
             res.status(500).json(err)
         })
 }
+
 const handleLogin = (req, res) => {
     User.findOne({
             username: req.body.username

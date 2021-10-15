@@ -1,11 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const {
-    body
+    checkBody
 } = require("express-validator")
 const usersController = require("../controllers/users")
 const {
-    validateConfirmPassword
+    validateConfirmPassword,
+    validate
 } = require("../middlewares/validate")
 const authGard = require("../middlewares/authGard")
 const session = require("../middlewares/session")
@@ -17,9 +18,10 @@ const upload = multer({
 router.get("/", usersController.getHomePage)
 router.get("/signup", usersController.getSignupPage)
 router.post("/signup",
-    body("email").isEmail(),
-    [validateConfirmPassword],
     upload.single("profilePicture"),
+    // body("email").isEmail().normalizeEmail(),
+    // [validateConfirmPassword],
+    // [validate],
     usersController.handleSignup)
 router.get("/login", usersController.getLoginPage)
 router.post("/login", usersController.handleLogin)

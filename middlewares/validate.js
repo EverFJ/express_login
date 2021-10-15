@@ -32,4 +32,26 @@ module.exports = {
                 throw new Error('Passwords must be same')
             }
         }),
+    validator: function(req, res, next) {
+
+        req.checkBody('email')
+            .notEmpty()
+            .withMessage('Email field is required')
+            .isEmail()
+            .withMessage('Enter a valid email address')
+
+        req.checkBody('password').notEmpty().withMessage('Password field is required');
+        req.checkBody('passwordConfirm').notEmpty().withMessage('Retyp password field is required');
+
+        req.checkBody('password').isEqual(req.body.retype_password).withMessage('Password and confirm password did not match.');
+
+
+        req.asyncValidationErrors().then(function() {
+            next();
+        }).catch(function(errors) {
+            req.flash('errors', errors);
+            res.status(500).redirect('back');
+        });
+
+    }
 }

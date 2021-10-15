@@ -42,6 +42,7 @@ const getAdminPage = (req, res) => {
         })
 }
 const handleSignup = (req, res) => {
+    console.log(`req.body`, req.body)
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         res.status(500).json({
@@ -57,7 +58,9 @@ const handleSignup = (req, res) => {
         firstName: req.body.firstName,
         surname: req.body.surname,
         dateOfBirth: req.body.dateOfBirth,
-        profilePicture: req.file.originalname
+        profilePicture: req.file ? req.file.originalname : ""
+        // !!! Test this :
+        // ...req.body, profilePicture: req.file ? req.file.originalname : ""
     })
     user.save()
         .then(response => {

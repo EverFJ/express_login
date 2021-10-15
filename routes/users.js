@@ -22,6 +22,7 @@ router.post("/signup",
     // body("email").isEmail().normalizeEmail(),
     // [validateConfirmPassword],
     // [validate],
+    // !!! re Test les middlewares
     usersController.handleSignup)
 router.get("/login", usersController.getLoginPage)
 router.post("/login", usersController.handleLogin)

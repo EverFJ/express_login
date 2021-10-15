@@ -17,6 +17,9 @@ const getUserPage = (req, res) => {
             res.render("user", {
                 user: user
             })
+            // !!! Try this : 
+            // res.render("user", {user})
+
         })
         .catch(err => {
             console.error(err)
@@ -35,6 +38,8 @@ const getAdminPage = (req, res) => {
             res.render("admin", {
                 users: users
             })
+            // !!! Try this : 
+            // res.render("admin", {users})
         })
         .catch(err => {
             console.error(err)

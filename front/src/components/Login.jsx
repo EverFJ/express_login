@@ -4,12 +4,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onEmailChange = e => {
-    setEmail(e.target.value);
-  };
-  const onPasswordChange = e => {
-    setPassword(e.target.value);
-  };
   const handleLogin = e => {};
 
   return (
@@ -21,14 +15,14 @@ export default function Login() {
           name="email"
           placeholder="Your email"
           value={email}
-          onChange={onEmailChange}
+          onChange={e => setEmail(e.target.value)}
         />
         <input
           type="password"
           name="password"
           placeholder="Your password"
           value={password}
-          onChange={onPasswordChange}
+          onChange={e => setPassword(e.target.value)}
         />
         <button className="btn btn-primary" onClick={handleLogin}>
           Login

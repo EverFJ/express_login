@@ -6,18 +6,6 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [date, setDate] = useState("");
 
-  const onEmailChange = e => {
-    setEmail(e.target.value);
-  };
-  const onPasswordChange = e => {
-    setPassword(e.target.value);
-  };
-  const onConfirmPasswordChange = e => {
-    setConfirmPassword(e.target.value);
-  };
-  const onDateChange = e => {
-    setDate(e.target.value);
-  };
   const handleSignup = () => {};
 
   return (
@@ -29,27 +17,27 @@ export default function Signup() {
           name="email"
           placeholder="Your email"
           value={email}
-          onChange={onEmailChange}
+          onChange={e => setEmail(e.target.value)}
         />
         <input
           type="password"
           name="password"
           placeholder="Your password"
           value={password}
-          onChange={onPasswordChange}
+          onChange={e => setPassword(e.target.value)}
         />
         <input
           type="password"
           name="confirmPassword"
           value={confirmPassword}
-          onChange={onConfirmPasswordChange}
+          onChange={e => setConfirmPassword(e.target.value)}
           placeholder="Confirm your password"
         />
         <input
           type="date"
           name="dateOfBirth"
           value={date}
-          onChange={onDateChange}
+          onChange={e => setDate(e.target.value)}
         />
         <button className="btn btn-primary" onClick={handleSignup}>
           Signup

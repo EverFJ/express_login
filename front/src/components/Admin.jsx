@@ -5,7 +5,7 @@ export default function Admin(props) {
     <div>
       <h1>Admin</h1>
       {!props.isLogged ? (
-        <p>You're not allowed to see this</p>
+        <p>You're not allowed to see this. Please login first</p>
       ) : (
         <p>User's list</p>
       )}
